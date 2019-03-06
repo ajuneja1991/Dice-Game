@@ -16,12 +16,29 @@ scores=[0,0];
 roundScore=0;
 activePlayer=0;
 
-// Generate a Random Number between 1 to 6
-dice = Math.floor(Math.random() * 6) + 1;
-console.log(dice);
-
-// Access DOM object using query selector
-document.querySelector('#current-'+ activePlayer).innerHTML = dice;
+        document.getElementById('current-0').textContent = 0;
+        document.getElementById('current-1').textContent = 0;
+        document.getElementById('score-0').textContent = 0;
+        document.getElementById('score-1').textContent = 0;
 
 // Change style for CSS
 document.querySelector('.dice').style.display = 'none';
+
+// Event handling
+document.querySelector('.btn-roll').addEventListener('click', function(){
+
+    // 1. Random Number
+    var dice = Math.floor(Math.random() * 6) + 1;
+
+    // 2. Display the result
+    var diceDOM = document.querySelector('.dice');
+    diceDOM.style.display= 'block';
+    diceDOM.src = 'dice-'+ dice + '.png';
+
+    // Update the round score IF the rolled number was NOT a 1
+    if(dice !==1){
+        roundScore+= dice;
+        document.querySelector('#current-'+ activePlayer).innerHTML = roundScore;
+    }else{
+    }
+});
